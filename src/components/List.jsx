@@ -17,7 +17,6 @@ const List = () => {
     });
   };
   useEffect(() => {
-    // getDataFirebase();
     getDataOn();
   }, []);
 
