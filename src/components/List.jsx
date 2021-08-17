@@ -16,6 +16,22 @@ const List = () => {
       setUsers(snapshot.val());
     });
   };
+
+  const updateUser = async (id) => {
+    const userUpdate = {
+      nombre: "Editado",
+    };
+    db.ref()
+      .child("users/" + id)
+      .update(userUpdate);
+  };
+
+  const removeUser = async (id) => {
+    db.ref()
+      .child("users/" + id)
+      .remove();
+  };
+
   useEffect(() => {
     getDataOn();
   }, []);
@@ -31,6 +47,10 @@ const List = () => {
               <li>{value.nombre}</li>
               <li>{value.edad}</li>
               <li>{value.carrera}</li>
+              <div>
+                <button onClick={() => updateUser(key)}>Edit</button>
+                <button onClick={() => removeUser(key)}>Delete</button>
+              </div>
             </ul>
           );
         })}
